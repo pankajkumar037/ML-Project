@@ -3,16 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Machine Learning</title>
+    <title>Machine Learning Iris Predictor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .form-container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+
+        .form-container input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #cccccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .form-container button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .form-container button:hover {
+            background-color: #0056b3;
+        }
+
+        .prediction {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333333;
+        }
+    </style>
 </head>
 <body>
-    <form action="{{url_for('predict')}}" method="post">
-        <input type="text" name="SepalLengthCm" placeholder="Enter SepalLengthCm">
-        <input type="text" name="SepalWidthCm" placeholder="Enter SepalWidthCm">
-        <input type="text" name="PetalLengthCm" placeholder="Enter PetalLengthCm">
-        <input type="text" name="PetalWidthCm" placeholder="Enter PetalWidthCm">
-        <button type="submit">predict</button>
-    </form>
-    <h3><br>{{prediction_text}}</h3>
+    <div class="form-container">
+        <form action="{{url_for('predict')}}" method="post">
+            <input type="text" name="SepalLengthCm" placeholder="Enter Sepal Length (cm)" required>
+            <input type="text" name="SepalWidthCm" placeholder="Enter Sepal Width (cm)" required>
+            <input type="text" name="PetalLengthCm" placeholder="Enter Petal Length (cm)" required>
+            <input type="text" name="PetalWidthCm" placeholder="Enter Petal Width (cm)" required>
+            <button type="submit">Predict</button>
+        </form>
+        {% if prediction_text %}
+        <h3 class="prediction">{{prediction_text}}</h3>
+        {% endif %}
+    </div>
 </body>
 </html>
